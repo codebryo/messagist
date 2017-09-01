@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Messagist - Simple</title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <messagist :messages="messages"></messagist>
+    </div>
+    <script src="/dist/messagist.js"></script>
+    <script>
+      Vue.use(Messagist)
+
+      new Vue({
+        el: '#app',
+        data: {
+          messages: {}
+        }
+      })
+    </script>
+  </body>
+</html>
