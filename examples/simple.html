@@ -16,7 +16,20 @@
       new Vue({
         el: '#app',
         data: {
-          messages: {}
+          messages: {
+            init: {
+              content: [
+                'Hello',
+                'I am Messagist, and will be your new best friend!'
+              ],
+              choices: {
+                accept: 'Okay Messagist, I accept that ♥️'
+              }
+            },
+            accept: {
+              content: '🎉🎉🎉 That makes me happy'
+            }
+          }
         }
       })
     </script>

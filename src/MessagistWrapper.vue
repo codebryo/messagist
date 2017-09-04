@@ -52,10 +52,7 @@ export default {
 
   data() {
     return {
-      messagesToPrint: [
-        new MessageObject('Hello'),
-        new MessageObject('I am Messagist')
-      ],
+      messagesToPrint: [],
       interval: {
         user: 800,
         system: 400
@@ -76,8 +73,12 @@ export default {
           choices: []
         }
       }
+
+      let contents = this.messages[this.currentKey].content
+      if (typeof contents == 'string') contents = [contents]
+
       return {
-        messages: this.messages[this.currentKey].content,
+        messages: contents,
         choices: this.messages[this.currentKey].choices
       }
     },
@@ -88,6 +89,13 @@ export default {
   },
 
   methods: {
+    delayPrint() {
+      setTimeout(() => {
+        this.loading = false
+        this.printLoop()
+      }, this.interval.user)
+    },
+
     printLoop() {
       this.printing = true
       let messages = Array.from(this.current.messages)
@@ -107,6 +115,17 @@ export default {
       }
 
        print(messages.shift())
+    },
+
+    selected({ key, custom }) {
+      const message = custom ? custom : this.current.choices[key]
+      this.messagesToPrint.push(new MessageObject( message ,'user'))
+
+      this.currentKey = key
+      this.loading = true
+      this.awaitingUserInput = false
+
+      this.delayPrint()
     },
 
   },
