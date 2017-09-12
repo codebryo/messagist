@@ -18,7 +18,9 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
-            'stylus': 'vue-style-loader!stylus-loader'
+            'stylus': 'vue-style-loader!css-loader!stylus-loader?paths=node_modules/bootstrap-stylus/stylus/',
+            'scss': 'vue-style-loader!css-loader!sass-loader',
+            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
           }
           // other vue-loader options go here
         }
