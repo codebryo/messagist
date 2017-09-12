@@ -2,6 +2,7 @@ Messagist
 =========
 **Configurable conversation flow for great user engagement**
 
+![Messagist in action](assets/messagist.gif)
 
 ## Getting Started
 
