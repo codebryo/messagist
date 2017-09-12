@@ -138,6 +138,30 @@ export default {
 
 
 <style lang="stylus">
+.Messagist
+  max-width 640px
+  margin 0 auto
 
+  ul
+    padding 20px 50px
+
+.message-list-item
+  transition all 500ms
+
+.message-list-item-loading
+  text-align left
+  margin-left 40p
+
+.message-list-enter
+  opacity 0
+  transform translateY(30px)
+
+.choice-list-item
+  transition all 1s
+
+.choice-list-enter,
+.choice-list-leave-to
+  opacity 0
+  transform translateY(30px)
 </style>
 

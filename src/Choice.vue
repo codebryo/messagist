@@ -51,4 +51,9 @@ export default {
 </script>
 
 <style lang="stylus">
+  .choice
+    margin-right 40px
+    display block
+    text-align right
+    color #b3e6a6
 </style>
