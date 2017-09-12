@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Messagist - Breaking the flow</title>
+    <script src="https://unpkg.com/vue"></script>
+
+    <style>
+      .Survey {
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      label {
+        display: block;
+      }
+
+      input {
+        width: 100%;
+        display: block;
+        height: 2rem;
+        font-size: 1rem;
+        padding: 0 .5rem;
+        margin: .5rem 0;
+        box-sizing: border-box;
+      }
+
+      button {
+        float: right;
+        padding: 10px 20px;
+        background: darkseagreen;
+        color: #fff;
+        font-weight: bold;
+        border: 1px solid forestgreen;
+        border-radius: .5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <messagist
+        :messages="messages"
+        @custom-survey="startSurvey"
+        @finished="finished"
+      ></messagist>
+
+      <div class="Survey" v-show="survey.visible">
+        <form action="#store" @submit.prevent="save">
+          <label for="name">What's your name:</label>
+          <input type="text" name="name" v-model="survey.name" placeholder="Jane Doe" required>
+          <label for="name">What's your favorite animal:</label>
+          <input type="text" v-model="survey.animal" placeholder="Favorite Animal" required>
+          <button type="submit">All set!</button>
+        </form>
+      </div>
+
+    </div>
+    <script src="/dist/messagist.js"></script>
+    <script>
+      Vue.use(Messagist)
+
+      conversation = {
+        init: {
+          content: [
+            'Hi, this is your automated setup assistant.',
+            'Before you can start using the app, we have some questions.'
+          ],
+          choices: {
+            fill_out_survey: {
+              text: 'I am ready to fill out the questions',
+              action() {
+                this.trigger('custom-survey')
+              }
+            }
+          }
+        },
+        fill_out_survey: {
+          content: [
+            'Cool, we are all set.',
+            'Have a smashing day and enjoy the best app in the world.'
+          ],
+          action() {
+            this.trigger('finished')
+          }
+        }
+      }
+
+      new Vue({
+        el: '#app',
+        data: {
+          messages: conversation,
+          continue: null,
+          survey: {
+            visible: false,
+            name: '',
+            animal: ''
+          }
+        },
+
+        methods: {
+          startSurvey(done) {
+            this.continue = done
+            this.survey.visible = true
+          },
+
+          save() {
+            this.survey.visible = false
+            const message = `Okay, my name is ${this.survey.name} and I adore ${this.survey.animal}.`
+            this.continue(message)
+          },
+
+          finished() {
+            alert('You are all done with Messagist for now.')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

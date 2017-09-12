@@ -79,7 +79,8 @@ export default {
 
       return {
         messages: contents,
-        choices: this.messages[this.currentKey].choices
+        choices: this.messages[this.currentKey].choices,
+        action: this.messages[this.currentKey].action
       }
     },
 
@@ -89,6 +90,16 @@ export default {
   },
 
   methods: {
+    trigger(key) {
+      this.awaitingUserInput = true
+      this.$emit(key, (options) => { this.continue(options) })
+    },
+
+    continue(options) {
+      // TODD: Extend options, currently it supports a string only
+      this.selected({ key: this.primaryKey, custom: options })
+    },
+
     delayPrint() {
       setTimeout(() => {
         this.loading = false
@@ -96,13 +107,21 @@ export default {
       }, this.interval.user)
     },
 
+    tryCallback() {
+      if(typeof this.current.action != 'function') return
+      const cb = this.current.action.bind(this)
+      return cb()
+    },
+
     printLoop() {
       this.printing = true
       let messages = Array.from(this.current.messages)
 
       const loop = () => {
-        if(messages.length == 0)
+        if(messages.length == 0) {
+          this.tryCallback()
           return this.printing =false
+        }
         setTimeout(
           () => print(messages.shift())
           , this.interval.system
