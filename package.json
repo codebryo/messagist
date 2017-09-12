@@ -1,5 +1,5 @@
 {
-  "name": "Messagist",
+  "name": "messagist",
   "version": "0.1",
   "description": "Configurable interface for conversational user engagement",
   "main": "index.js",
