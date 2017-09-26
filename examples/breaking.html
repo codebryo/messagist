@@ -57,7 +57,9 @@
     </div>
     <script src="/dist/messagist.js"></script>
     <script>
-      Vue.use(Messagist)
+      console.log(Messagist)
+
+      Vue.component('messagist', Messagist)
 
       conversation = {
         init: {

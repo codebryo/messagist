@@ -1,6 +1,6 @@
 <template lang="html">
   <a
-    class="choice"
+    class="messagist__choices-list-item"
     :href="primaryKey"
     @click.prevent="selected"
   >
@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style lang="stylus">
-  .choice
+  .messagist__choices-list-item
     margin-right 40px
     display block
     text-align right

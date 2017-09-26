@@ -1,5 +1,5 @@
 <template lang="html">
-  <li :class="message.author">
+  <li :class="cssClass">
     <span v-html="message.text" />
   </li>
 </template>
@@ -11,6 +11,12 @@ export default {
 
   props: {
     message: Object
+  },
+
+  computed: {
+    cssClass() {
+      return `messagist__list-item-${this.message.author}`
+    }
   }
 }
 </script>
@@ -25,7 +31,7 @@ transparent-body()
   position absolute
   border 8px solid transparent
 
-.message-list-item
+.messagist__list-item
   list-style none
   margin-bottom 5px
 
@@ -37,7 +43,7 @@ transparent-body()
     border-radius .5rem
     max-width 80%
 
-  &.system
+  &-system
     text-align left
 
     span::before
@@ -46,11 +52,7 @@ transparent-body()
       left -16px
       bottom 8px
 
-    + .user
-      margin-top 10px
-
-
-  &.user
+  &-user
     text-align right
 
     span
@@ -62,7 +64,8 @@ transparent-body()
         right -16px
         bottom 8px
 
-      + .system
-        margin-top 10px
+  &-system + &-user,
+  &-user + &-system
+    margin-top 10px
 </style>
 

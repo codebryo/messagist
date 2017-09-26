@@ -1,17 +1,17 @@
 <template>
   <div class="Messagist">
-    <transition-group name="message-list" tag="ul">
+    <transition-group name="messagist__list" tag="ul">
       <message
         v-for="message in messagesToPrint"
         :key="message.id"
         :message="message"
-        class="message-list-item"
+        class="messagist__list-item"
       />
     </transition-group>
 
     <div
       v-show="choicesVisible"
-      class="choice-list"
+      class="messagist__choices"
     >
       <choice
         v-for="(value, key) in current.choices"
@@ -19,7 +19,7 @@
         :primaryKey="key"
         :choice="value"
         @selected="selected"
-        class="choice-list-item"
+        class="messagist__choices-list-item"
       />
     </div>
   </div>
@@ -164,22 +164,22 @@ export default {
   ul
     padding 20px 50px
 
-.message-list-item
+.messagist__list-item
   transition all 500ms
 
-.message-list-item-loading
+.messagist__list-item-loading
   text-align left
   margin-left 40p
 
-.message-list-enter
+.messagist__list-enter
   opacity 0
   transform translateY(30px)
 
-.choice-list-item
+.messagist__choices-item
   transition all 1s
 
-.choice-list-enter,
-.choice-list-leave-to
+.messagist__choice-list-enter,
+.messagist__choice-list-leave-to
   opacity 0
   transform translateY(30px)
 </style>

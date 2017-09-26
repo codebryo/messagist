@@ -9,12 +9,12 @@ Messagist
 
 ### Using Messagist
 
-It's quite simple. As a usual plugin just let Vue know about it's existance:
+It's quite simple. Messeagist is prepared as a Vue component object, so the easiest is to use it as a global component:
 
 ```js
 import Messagist from 'vue-messagist'
 
-Vue.use(Messagist)
+Vue.component('messagist', Messagist)
 ```
 
 This makes a `messagist` component available, which has one mandatory `messages` property.
@@ -80,7 +80,7 @@ and the JS on the page could look like this.
 ```js
 import Messagist from 'vue-messagist'
 
-Vue.use(Messagist)
+Vue.component('messagist', Messagist)
 
 const messages = {...} // the message example from above
 
