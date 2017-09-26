@@ -1,8 +1,12 @@
 {
-  "name": "messagist",
-  "version": "0.1",
+  "name": "vue-messagist",
+  "version": "0.1.0",
   "description": "Configurable interface for conversational user engagement",
-  "main": "index.js",
+  "main": "dist/messagist.js",
+  "files": [
+    "dist/*.js",
+    "dist/*.map"
+  ],
   "repository": "https://github.com/codebryo/messagist.git",
   "author": "Roman Kuba <roman.kuba@gmail.com>",
   "license": "MIT",

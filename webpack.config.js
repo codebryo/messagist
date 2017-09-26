@@ -8,8 +8,8 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'messagist.js',
     library: 'Messagist',
-    libraryExport: "default",
-    libraryTarget: 'var'
+    libraryExport: 'default',
+    libraryTarget: 'umd'
   },
   module: {
     rules: [
